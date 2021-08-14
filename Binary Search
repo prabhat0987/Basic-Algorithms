@@ -1,0 +1,36 @@
+# Binary search is a searching algorithm that searches for a given number in an array.
+# Array needs to in sorted order for binary search to work.
+# This code assumes that input array is sorted in ascending order and array index start from 0.
+# It will return index of element to be searched if found else will return -1
+
+def Bs(arr:list, i:int, j:int, x:int)-> int:
+    if i == j:
+        if arr[i] == x:
+            return i
+        else:
+            return -1
+    else:
+        mid = math.ceil( (i+j) / 2 )
+        if arr[mid] == x:
+            return mid
+        elif arr[mid] > x:
+            return Bs(arr, i, mid-1, x)
+        else:
+            return Bs(arr, mid+1, j, x)
+            
+arr = list( map( int, input().split() ) )
+x = int( input() )
+i = 0
+j = len(arr)
+answer = BS(arr, i, j, x)
+if answer == -1:
+  print( str(x) + " not in array" )
+else:
+  print( str(x) + " is at index: " + str(answer) )
+
+
+# The above code is recursion version of binary search.
+# This recursive code is tail recursion and thus a non-recursive version of binary search can reduce space complexity.
+# Both recursive code and non-recursive code of binary search take same time complexity.
+# Best time complexity- O(1)
+# Worst and average time complexity- O(logn)
