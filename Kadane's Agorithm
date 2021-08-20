@@ -1,0 +1,25 @@
+# Also works when all elements of array are negative
+
+def maxsubarraysum(arr:[int]) -> int:
+    maxsum = 0    # keeps track of overall max sum
+    currsum = 0   # keeps track of local(subarray sum)
+    
+    for i in arr:
+        currsum += i
+        # if currsum is greater than maxsum then update maxsum with currsum value
+        if currsum > maxsum:    
+            maxsum = currsum
+        # if currsum is negative, no need to add to max sum bcoz it will reduce maxsum
+        if currsum < 0:
+            currsum = 0
+    
+    # if maxsum is 0, means all elements of array are negative then return maximum element
+    if maxsum == 0:
+        return max(arr)
+    # else return maxsum
+    else:
+        return maxsum
+        
+
+print(maxsubarraysum([-1,6,-9,5,4,6,3,-10,20]))
+print(maxsubarraysum([-2,-3,-4,-1,-6,-9]))
