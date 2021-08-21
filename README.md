@@ -2,4 +2,5 @@ This repository contains basic algorithms and structures like searching, sorting
 Here is a list of what algorithms, data structures this repository contains.
 
     Binary Search.  
-    Kadane's Algorithm
+    Kadane's Algorithm  
+    Path exits or not in graph  
