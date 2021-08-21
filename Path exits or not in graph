@@ -1,0 +1,44 @@
+# BFS approach to find whether there is path between 'start' node and 'end' node in simple undirected, unweighted graph
+# using adjacency list, queue, list of vertices
+
+from collections import defaultdict
+
+# n: number of vertices, edges: 2D list, start: start vertex, end: end vertex
+def pathOrNot(n: int, edges: [[]], start: int, end: int) -> bool:
+        
+  adj_list = defaultdict(list)
+  
+  # creating adjacency list to track of adjacent vertices
+  for i in edges:
+    adj_list[i[0]].append(i[1])
+    adj_list[i[1]].append(i[0])
+  
+  # vertices list to keep track of explored vertices
+  vertices = [0] * (n+1)
+  
+  # queue for BFS traversal and initiating with 'start'
+  queue = [start]
+  
+  # since 'start' is in queue( means it is explored ), make vertices[start] = 1
+  vertices[start] = 1
+  
+  # BFS algorithm
+  while len(queue)>0:
+    for i in adj_list[queue[0]]:
+      if vertices[i] == 0:
+        vertices[i] = 1
+        queue = queue + [i]
+    queue.pop(0)
+            
+  # if vertices[start] = 1 and vertices[end] = 1, means 'start' and 'end' are connected else not
+  # 1 and 1 = 1
+  if vertices[start] and vertices[end]:
+    return True
+  return False
+  
+  
+ans = pathOrNot(n = 10, edges= [ [5,4], [4,3], [3,2], [4,9], [0,6], [6,9], [1,2] ], start=5, end=1)
+print(ans)    # True
+
+ans = pathOrNot(n = 10, edges= [ [5,10], [4,3], [3,2], [4,9], [0,6], [6,9], [1,2] ], start=5, end=1)
+print(ans)    # False
